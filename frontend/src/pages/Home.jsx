@@ -2,7 +2,7 @@ import React from 'react';
 
 function Home() {
     return (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
+        <div style={{ padding: '70px 10px', textAlign: 'center' }}>
             <h2>Welcome to Yoga App</h2>
             <p>Your platform for Yoga registrations, sessions, and admin management.</p>
         </div>

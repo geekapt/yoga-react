@@ -1,27 +1,191 @@
 .navbar {
-    background-color: #007bff;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 12px 20px;
+    font-family: Arial, sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(46, 52, 64);
+    transition: background-color 0.3s ease;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.welcome-text {
+    font-size: 18px;
+    font-weight: bold;
     color: white;
 }
 
-.navbar a, .navbar span {
+.navbar.mobile {
+    background-color: #2e3440;
+}
+
+.logo {
+    height: 40px;
+    cursor: pointer;
+}
+
+.desktop-links {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end; /* Align items to the right */
+    flex-grow: 1;
+    align-items: center; /* Ensure alignment of items (Home, More) */
+}
+
+.desktop-links a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    font-weight: bold;
 }
 
-.navbar button {
-    background: none;
-    border: 1px solid white;
+.desktop-links a:hover {
+    color: aliceblue;
+}
+
+/* Dropdown styles */
+/* Dropdown styles */
+.dropdown {
+    position: relative; /* Ensure dropdown is positioned correctly inside the navbar */
+}
+
+.dropdown-btn {
+    background-color: transparent;
     color: white;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 10px;
+    display: flex;  /* Ensure the button aligns with others */
+    align-items: center; /* Align text and icon vertically */
 }
 
-.navbar button:hover {
-    background-color: white;
-    color: #007bff;
+.dropdown-btn:hover {
+    color: aliceblue;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Positions the menu just below the dropdown button */
+    left: 0; /* Align to the left of the dropdown button */
+    background-color: #2e3440;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10; /* Ensure dropdown menu is above other content */
+}
+
+.dropdown-menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* Remove underlines from all links */
+.desktop-links a,
+.navbar-right a {
+    text-decoration: none;
+}
+
+/* Navbar Right (for user/admin links) */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-right span {
+    font-weight: bold;
+    color: white;
+}
+
+/* Mobile Only - Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        background-color: #2e3440;
+    }
+
+    .desktop-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar-right {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #2e3440;
+        width: 100%;
+        padding: 20px 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .navbar-right.open {
+        display: flex;
+    }
+
+    .navbar-right a,
+    .navbar-right button {
+        color: white;
+        width: 50%;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 16px;
+        background: none;
+        border: none;
+    }
+
+    .navbar-right a:hover,
+    .navbar-right button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar-right button.small-btn {
+        background-color: #dc3545;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .navbar-right button.small-btn:hover {
+        background-color: #c82333;
+    }
+
+    .welcome-text {
+        font-size: 14px;
+    }
 }

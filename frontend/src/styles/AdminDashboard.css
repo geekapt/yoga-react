@@ -1,58 +1,79 @@
 .admin-dashboard {
-    padding: 20px;
-    max-width: 100%;
-    margin: 0 auto;
+    padding: 84px;
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.admin-dashboard h2 {
+h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
 }
 
-/* Table styling */
-table {
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.edit-form input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.edit-form button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Table Wrapper */
+.responsive-table {
+    overflow-x: auto;
+}
+
+/* Default Table Styles */
+.user-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-    background-color: #fff;
-    overflow-x: auto;
-    display: block; /* Important for small screens */
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
 }
 
-/* Headers and Cells */
-table, th, td {
+.user-table th, .user-table td {
+    padding: 10px;
     border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px 8px;
     text-align: center;
-    font-size: 14px;
 }
 
-/* Header Background */
-th {
-    background-color: #007bff;
-    color: white;
+.user-table th {
+    background-color: #f4f4f4;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 /* Buttons */
 button {
-    padding: 6px 12px;
-    margin: 3px;
+    padding: 5px 10px;
+    margin: 11px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    font-size: 13px;
-    transition: background-color 0.3s;
 }
 
 button.edit {
@@ -65,78 +86,51 @@ button.delete {
     color: #fff;
 }
 
-button.edit:hover {
-    background-color: #e0a800;
-}
-
-button.delete:hover {
-    background-color: #c82333;
-}
-
-/* Profile Pic */
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-}
-
-/* Edit Form */
-.edit-form {
-    background-color: #f1f1f1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
-
-.edit-form input {
-    width: calc(100% - 22px);
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.edit-form button {
-    margin-right: 5px;
-    padding: 7px 12px;
-}
-
-button.cancel {
-    background-color: #6c757d;
-    color: white;
-}
-
-/* Responsive table on smaller screens */
+/* RESPONSIVE DESIGN: Convert table to cards on small screens */
 @media (max-width: 768px) {
-    th, td {
-        padding: 8px 5px;
-        font-size: 12px;
-    }
-
-    table {
+    table.user-table, 
+    table.user-table thead, 
+    table.user-table tbody, 
+    table.user-table th, 
+    table.user-table td, 
+    table.user-table tr {
         display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        width: 98%;
     }
 
-    button {
-        padding: 4px 8px;
-        font-size: 12px;
-    }
-}
-
-/* Mobile Devices */
-@media (max-width: 480px) {
-    th, td {
-        font-size: 11px;
-        padding: 6px 3px;
+    table.user-table thead {
+        display: none;
     }
 
-    button {
-        padding: 3px 6px;
-        font-size: 11px;
+    table.user-table tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: #fff;
+    }
+
+    table.user-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 4px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    table.user-table td:last-child {
+        border-bottom: none;
+    }
+
+    table.user-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #555;
+    }
+
+    .admin-dashboard {
+        margin-top: 60px;
+        padding: 10px;
     }
 }

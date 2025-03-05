@@ -6,6 +6,8 @@ import Profile from './pages/Profile';
 import AdminLogin from './pages/AdminLogin';  // New file for Admin Login
 import Navbar from './components/Navbar';
 import AdminDashboard from './pages/AdminDashboard';
+import Home from './pages/Home'; 
+
 
 const App = () => (
     <Router>
@@ -16,7 +18,8 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin/login" element={<AdminLogin />} />   {/* Add this */}
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/" element={<h1>Welcome to Yoga App</h1>} />
+            {/* <Route path="/" element={<h3>Welcome to Yoga App</h3>} /> */}
+            <Route path="/" element={<Home />} />   {/* Use Home component for the root path */}
         </Routes>
     </Router>
 );

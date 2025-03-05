@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../styles/AdminDashboard.css'; // Add this
 
 function AdminDashboard() {
     const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ function AdminDashboard() {
 
     const fetchUsers = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/admin/users');
+            const res = await axios.get('http://192.168.68.200:5000/admin/users');
             setUsers(res.data);
         } catch (error) {
             console.error('Failed to fetch users:', error);
@@ -20,7 +21,7 @@ function AdminDashboard() {
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/user/${id}`);
+            await axios.delete(`http://192.168.68.200:5000/user/${id}`);
             setUsers(users.filter(u => u.id !== id));
         } catch (error) {
             console.error('Failed to delete user:', error);
@@ -33,24 +34,24 @@ function AdminDashboard() {
 
     const handleUpdateUser = async () => {
         try {
-            await axios.put(`http://localhost:5000/user/${editUser.id}`, {
+            await axios.put(`http://192.168.68.200:5000/user/${editUser.id}`, {
                 name: editUser.name,
                 email: editUser.email,
                 phone: editUser.phone
             });
-            setEditUser(null);  // clear the form
-            fetchUsers(); // refresh the data
+            setEditUser(null);
+            fetchUsers();
         } catch (error) {
             console.error('Failed to update user:', error);
         }
     };
 
     return (
-        <div style={{ padding: '20px' }}>
+        <div className="admin-dashboard">
             <h2>Admin Dashboard</h2>
-            
+
             {editUser && (
-                <div style={{ marginBottom: '20px', border: '1px solid gray', padding: '10px' }}>
+                <div className="edit-form">
                     <h3>Edit User</h3>
                     <input
                         type="text"
@@ -71,43 +72,43 @@ function AdminDashboard() {
                         onChange={e => setEditUser({ ...editUser, phone: e.target.value })}
                     />
                     <button onClick={handleUpdateUser}>Update</button>
-                    <button onClick={() => setEditUser(null)}>Cancel</button>
+                    <button className="cancel" onClick={() => setEditUser(null)}>Cancel</button>
                 </div>
             )}
 
-            <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left' }}>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Profile Photo</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.phone}</td>
-                            <td>
-                                {user.profile_photo ? (
-                                    <img src={`http://localhost:5000${user.profile_photo}`} alt="Profile" width="50" />
-                                ) : (
-                                    'No Photo'
-                                )}
-                            </td>
-                            <td>
-                                <button onClick={() => handleEdit(user)}>Edit</button>
-                                <button onClick={() => deleteUser(user.id)}>Delete</button>
-                            </td>
+            <div className="responsive-table">
+                <table className="user-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Profile Photo</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <tr key={user.id}>
+                                <td data-label="ID">{user.id}</td>
+                                <td data-label="Name">{user.name}</td>
+                                <td data-label="Email">{user.email}</td>
+                                <td data-label="Phone">{user.phone}</td>
+                                <td data-label="Profile Photo">
+                                    {user.profile_photo ? (
+                                        <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                                    ) : 'No Photo'}
+                                </td>
+                                <td data-label="Actions">
+                                    <button className="edit" onClick={() => handleEdit(user)}>Edit</button>
+                                    <button className="delete" onClick={() => deleteUser(user.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

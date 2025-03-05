@@ -35,7 +35,7 @@
 }
 
 .form-group input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -43,7 +43,7 @@
 }
 
 button {
-    width: 100%;
+    width: 90%;
     padding: 12px;
     background-color: #28a745;
     color: white;

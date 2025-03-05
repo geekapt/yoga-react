@@ -12,7 +12,7 @@ app.use('/uploads', express.static('uploads')); // for profile images
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: '192.168.68.200',
     user: 'root',
     password: 'root',
     database: 'yoga'
@@ -104,7 +104,8 @@ app.delete('/user/:id', (req, res) => {
     });
 });
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+const PORT = 5000;
+app.listen(PORT, '0.0.0.0',() => console.log('Server running on port 5000'));
 
 db.connect((err) => {
     if (err) {
