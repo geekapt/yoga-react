@@ -13,6 +13,27 @@
     transition: background-color 0.3s ease;
 }
 
+/* Specific styles for logout buttons inside navbar */
+.navbar-right button.small-btn,
+.desktop-links button.small-btn {
+    width: 10%;
+    min-width: 60px; /* Ensures it's not too tiny on very narrow screens */
+    padding: 5px 8px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.navbar-right button.small-btn:hover,
+.desktop-links button.small-btn:hover {
+    background-color: #c82333;
+}
+
+
 .navbar-left {
     display: flex;
     align-items: center;
@@ -97,6 +118,10 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.admin-text {
+    color: white !important;
+    font-weight: bold;
+}
 
 
 

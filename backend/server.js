@@ -12,9 +12,9 @@ app.use('/uploads', express.static('uploads')); // for profile images
 
 // Database connection
 const db = mysql.createConnection({
-    host: '192.168.68.200',
+    host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'Skills@123',
     database: 'yoga'
 });
 

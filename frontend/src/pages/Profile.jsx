@@ -22,7 +22,7 @@ const Profile = () => {
             <p>Email: {user.email}</p>
             <p>Phone: {user.phone}</p>
             {user.profile_pic && (
-                <img src={`http://192.168.68.200:5000${user.profile_pic}`} alt="Profile" className="profile-pic" />
+                <img src={`http://localhost:5000${user.profile_pic}`} alt="Profile" className="profile-pic" />
             )}
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
         </div>

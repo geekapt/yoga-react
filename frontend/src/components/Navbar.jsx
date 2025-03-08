@@ -68,7 +68,7 @@ const Navbar = () => {
                 )}
                 {admin && !user && (
                     <>
-                        <span>Hello, Admin</span>
+                        <span className="admin-text">Hello, Admin</span>
                         <button className="small-btn" onClick={handleAdminLogout}>Logout</button>
                     </>
                 )}
@@ -100,7 +100,7 @@ const Navbar = () => {
                         )}
                         {admin && !user && (
                             <>
-                                <span>Hello, Admin</span>
+                                <span className="admin-text">Hello, Admin</span>
                                 <button className="small-btn" onClick={handleAdminLogout}>Logout</button>
                             </>
                         )}

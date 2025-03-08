@@ -86,6 +86,8 @@ button.delete {
     color: #fff;
 }
 
+
+
 /* RESPONSIVE DESIGN: Convert table to cards on small screens */
 @media (max-width: 768px) {
     table.user-table, 
@@ -94,7 +96,7 @@ button.delete {
     table.user-table th, 
     table.user-table td, 
     table.user-table tr {
-        display: block;
+        display: inline-block;
         width: 98%;
     }
 
@@ -116,6 +118,7 @@ button.delete {
         text-align: left;
         border: none;
         border-bottom: 1px solid #eee;
+        vertical-align: middle;
     }
 
     table.user-table td:last-child {

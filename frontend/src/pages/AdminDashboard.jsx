@@ -12,7 +12,7 @@ function AdminDashboard() {
 
     const fetchUsers = async () => {
         try {
-            const res = await axios.get('http://192.168.68.200:5000/admin/users');
+            const res = await axios.get('http://localhost:5000/admin/users');
             setUsers(res.data);
         } catch (error) {
             console.error('Failed to fetch users:', error);
@@ -21,7 +21,7 @@ function AdminDashboard() {
 
     const deleteUser = async (id) => {
         try {
-            await axios.delete(`http://192.168.68.200:5000/user/${id}`);
+            await axios.delete(`http://localhost:5000/user/${id}`);
             setUsers(users.filter(u => u.id !== id));
         } catch (error) {
             console.error('Failed to delete user:', error);
@@ -34,7 +34,7 @@ function AdminDashboard() {
 
     const handleUpdateUser = async () => {
         try {
-            await axios.put(`http://192.168.68.200:5000/user/${editUser.id}`, {
+            await axios.put(`http://localhost:5000/user/${editUser.id}`, {
                 name: editUser.name,
                 email: editUser.email,
                 phone: editUser.phone
@@ -97,7 +97,7 @@ function AdminDashboard() {
                                 <td data-label="Phone">{user.phone}</td>
                                 <td data-label="Profile Photo">
                                     {user.profile_photo ? (
-                                        <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                                        <img src={`http://localhost:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
                                     ) : 'No Photo'}
                                 </td>
                                 <td data-label="Actions">
