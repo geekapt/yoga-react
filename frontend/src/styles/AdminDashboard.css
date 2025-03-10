@@ -1,139 +1,147 @@
-.admin-dashboard {
-    padding: 84px;
-    font-family: Arial, sans-serif;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border: 1px solid #ddd;
-    padding: 15px;
-    background-color: #f9f9f9;
-    max-width: 600px;
-    margin: 0 auto 20px;
-}
-
-.edit-form input {
-    padding: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.edit-form button {
-    padding: 8px 15px;
-    cursor: pointer;
-}
-
-.cancel {
-    background-color: #6c757d;
-    color: white;
-}
-
-/* Table Wrapper */
-.responsive-table {
-    overflow-x: auto;
-}
-
-/* Default Table Styles */
-.user-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.user-table th, .user-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.user-table th {
-    background-color: #f4f4f4;
-}
-
-/* Profile Picture */
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* Buttons */
-button {
-    padding: 5px 10px;
-    margin: 11px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
-button.edit {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-button.delete {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-
-
-/* RESPONSIVE DESIGN: Convert table to cards on small screens */
-@media (max-width: 768px) {
-    table.user-table, 
-    table.user-table thead, 
-    table.user-table tbody, 
-    table.user-table th, 
-    table.user-table td, 
-    table.user-table tr {
-        display: inline-block;
-        width: 98%;
-    }
-
-    table.user-table thead {
-        display: none;
-    }
-
-    table.user-table tr {
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        padding: 8px;
-        background-color: #fff;
-    }
-
-    table.user-table td {
-        display: flex;
-        justify-content: space-between;
-        padding: 2px 4px;
-        text-align: left;
-        border: none;
-        border-bottom: 1px solid #eee;
-        vertical-align: middle;
-    }
-
-    table.user-table td:last-child {
-        border-bottom: none;
-    }
-
-    table.user-table td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #555;
-    }
-
     .admin-dashboard {
-        margin-top: 60px;
-        padding: 10px;
+        padding: 84px;
+        font-family: Arial, sans-serif;
+        max-width: 100%;
+        box-sizing: border-box;
     }
-}
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .edit-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        background-color: #f9f9f9;
+        max-width: 600px;
+        margin: 0 auto 20px;
+    }
+
+    .edit-form input {
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .edit-form button {
+        padding: 8px 15px;
+        cursor: pointer;
+    }
+
+    .cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    /* Table Wrapper */
+    .responsive-table {
+        overflow-x: auto;
+    }
+
+    /* Default Table Styles */
+    .user-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .user-table th, .user-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .user-table th {
+        background-color: #f4f4f4;
+    }
+
+    /* Profile Picture */
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    /* Buttons */
+    button {
+        padding: 5px 10px;
+        margin: 11px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+
+    button.edit {
+        background-color: #ffc107;
+        color: #fff;
+    }
+
+    button.delete {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+/* RESPONSIVE DESIGN: Keep the table horizontal on mobile */
+    /* RESPONSIVE DESIGN: Convert table to cards on small screens */
+    @media (max-width: 768px) {
+        table.user-table, 
+        table.user-table thead, 
+        table.user-table tbody, 
+        table.user-table th, 
+        table.user-table td, 
+        table.user-table tr {
+            display: inline-block;
+            width: 98%;
+        }
+
+        table.user-table thead {
+            display: none;
+        }
+
+        table.user-table tr {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 8px;
+            background-color: #fff;
+        }
+
+        table.user-table td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        table.user-table td:last-child {
+            border-bottom: none;
+        }
+
+        /* ✅ THIS IS THE MAGIC!! */
+        table.user-table td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        /* ✅ Profile picture fix */
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        /* ✅ Fix Admin Dashboard padding */
+        .admin-dashboard {
+            margin-top: 60px;
+            padding: 10px;
+        }
+    }

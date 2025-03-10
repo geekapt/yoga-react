@@ -1,114 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/AdminDashboard.css'; // Add this
+import EditForm from './EditForm';
+import '../styles/AdminDashboard.css';
 
 function AdminDashboard() {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [editUser, setEditUser] = useState(null);
 
     useEffect(() => {
         fetchUsers();
     }, []);
 
-    const fetchUsers = async () => {
-        try {
-            const res = await axios.get('http://localhost:5000/admin/users');
-            setUsers(res.data);
-        } catch (error) {
-            console.error('Failed to fetch users:', error);
+    const fetchUsers = () => {
+        axios.get('http://localhost:5000/users')
+            .then(res => setUsers(res.data))
+            .catch(err => console.error(err));
+    };
+
+    const handleDeleteUser = (id) => {
+        if (window.confirm('Are you sure you want to delete this user?')) {
+            axios.delete(`http://localhost:5000/user/${id}`)
+                .then(() => fetchUsers())
+                .catch(err => console.error(err));
         }
     };
 
-    const deleteUser = async (id) => {
-        try {
-            await axios.delete(`http://localhost:5000/user/${id}`);
-            setUsers(users.filter(u => u.id !== id));
-        } catch (error) {
-            console.error('Failed to delete user:', error);
-        }
-    };
-
-    const handleEdit = (user) => {
+    const handleEditUser = (user) => {
         setEditUser(user);
     };
 
-    const handleUpdateUser = async () => {
-        try {
-            await axios.put(`http://localhost:5000/user/${editUser.id}`, {
-                name: editUser.name,
-                email: editUser.email,
-                phone: editUser.phone
-            });
-            setEditUser(null);
-            fetchUsers();
-        } catch (error) {
-            console.error('Failed to update user:', error);
-        }
+    const handleCancelEdit = () => {
+        setEditUser(null);
     };
+
+    const handleUpdateUser = () => {
+        setEditUser(null);
+        fetchUsers();
+    };
+
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.phone.includes(searchTerm)
+    );
 
     return (
         <div className="admin-dashboard">
-            <h2>Admin Dashboard</h2>
-
-            {editUser && (
-                <div className="edit-form">
-                    <h3>Edit User</h3>
+            {editUser ? (
+                <EditForm user={editUser} onCancel={handleCancelEdit} onUpdate={handleUpdateUser} />
+            ) : (
+                <>
+                    <h2>User Management</h2>
                     <input
                         type="text"
-                        placeholder="Name"
-                        value={editUser.name}
-                        onChange={e => setEditUser({ ...editUser, name: e.target.value })}
+                        placeholder="Search by Name, Email or Phone"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={editUser.email}
-                        onChange={e => setEditUser({ ...editUser, email: e.target.value })}
-                    />
-                    <input
-                        type="tel"
-                        placeholder="Phone"
-                        value={editUser.phone}
-                        onChange={e => setEditUser({ ...editUser, phone: e.target.value })}
-                    />
-                    <button onClick={handleUpdateUser}>Update</button>
-                    <button className="cancel" onClick={() => setEditUser(null)}>Cancel</button>
-                </div>
-            )}
-
-            <div className="responsive-table">
-                <table className="user-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Profile Photo</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => (
-                            <tr key={user.id}>
-                                <td data-label="ID">{user.id}</td>
-                                <td data-label="Name">{user.name}</td>
-                                <td data-label="Email">{user.email}</td>
-                                <td data-label="Phone">{user.phone}</td>
-                                <td data-label="Profile Photo">
-                                    {user.profile_photo ? (
-                                        <img src={`http://localhost:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
-                                    ) : 'No Photo'}
-                                </td>
-                                <td data-label="Actions">
-                                    <button className="edit" onClick={() => handleEdit(user)}>Edit</button>
-                                    <button className="delete" onClick={() => deleteUser(user.id)}>Delete</button>
-                                </td>
+                    <table className="user-table">
+                        <thead>
+                            <tr>
+                                <th>Profile</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {filteredUsers.map(user => (
+                                <tr key={user.id}>
+                                    <td data-label="Profile"><img src={`http://localhost:5000${user.profile_photo}`} alt="Profile" className="profile-pic" /></td>
+                                    <td data-label="Name">{user.name}</td>
+                                    <td data-label="Email">{user.email}</td>
+                                    <td data-label="Phone">{user.phone}</td>
+                                    <td data-label="Action">
+                                        <button className="edit" onClick={() => handleEditUser(user)}>Edit</button>
+                                        <button className="delete" onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
+            )}
         </div>
     );
 }

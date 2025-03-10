@@ -14,7 +14,7 @@ app.use('/uploads', express.static('uploads')); // for profile images
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Skills@123',
+    password: 'root',
     database: 'yoga'
 });
 
@@ -103,6 +103,17 @@ app.delete('/user/:id', (req, res) => {
         res.json({ message: 'User deleted successfully' });
     });
 });
+
+// Add Admin User (with Password)
+app.post('/register', (req, res) => {
+    const { name, email, phone, password } = req.body;
+    const sql = 'INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)';
+    db.query(sql, [name, email, phone, password], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: 'User added successfully' });
+    });
+});
+
 
 const PORT = 5000;
 app.listen(PORT, '0.0.0.0',() => console.log('Server running on port 5000'));
