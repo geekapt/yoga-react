@@ -123,6 +123,10 @@
     font-weight: bold;
 }
 
+.user-text {
+    color: white !important;
+    font-weight: bold;
+}
 
 
 /* Remove underlines from all links */

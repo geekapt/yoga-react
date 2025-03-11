@@ -61,7 +61,7 @@ const Navbar = () => {
                 {admin && <Link to="/admin/dashboard">Dashboard</Link>}
                 {user && !admin && (
                     <>
-                        <span>Hello, {user.name}</span>
+                        <span className='user-text'>Hello, {user.name}</span>
                         <Link to="/profile">Profile</Link>
                         <button className="small-btn" onClick={handleLogout}>Logout</button>
                     </>

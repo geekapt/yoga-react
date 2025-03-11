@@ -1,6 +1,65 @@
 .profile-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 250px;
+    padding: 20px;
+    position: fixed;
+    left: -250px;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+}
+
+.sidebar-open .sidebar {
+    left: 0;
+}
+
+.toggle-btn {
+    background-color: #4CAF50;
+    width: 13%;
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    cursor: pointer;
+    font-size: 23px;
+    position: absolute;
+    top: 89px;
+    right: -10px;
+    /* border-radius: 50%; */
+}
+
+.button {
+    width: 12%;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.sidebar nav ul li:hover {
+    background-color: #555;
+}
+
+.profile-content {
+    flex-grow: 1;
+    padding: 75px;
     text-align: center;
-    padding: 50px;
+    margin-left: 0; /* Default no margin for small screens */
+}
+
+.sidebar-open .profile-content {
+    margin-left: 250px;
 }
 
 .profile-pic {
@@ -11,14 +70,17 @@
     margin: 20px 0;
 }
 
-.logout-btn {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+    }
 
-.logout-btn:hover {
-    background-color: #c82333;
+    .sidebar-open .profile-content {
+        margin-left: 200px;
+    }
+    .toggle-btn{
+        top: 60px;
+
+    }
 }
