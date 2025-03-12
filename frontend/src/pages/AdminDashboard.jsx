@@ -15,7 +15,7 @@ function AdminDashboard() {
     const fetchUsers = () => {
         axios.get('http://localhost:5000/users')
             .then(res => setUsers(res.data))
-            .catch(err => console.error(err));
+            .catch(err => console.error("Error fetching users:", err));
     };
 
     const handleDeleteUser = (id) => {
