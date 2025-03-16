@@ -10,14 +10,27 @@ function AdminDashboard() {
     const [activeSection, setActiveSection] = useState('users'); // Manage Users or Gym Packages
     const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar State
 
+     // Gym Packages
+    const [gymPackages, setGymPackages] = useState([]);
+    const [newPackage, setNewPackage] = useState({ name: '', details: '', duration: '', price: '' });
+    const [editingPackage, setEditingPackage] = useState(null);
+
+
     useEffect(() => {
         fetchUsers();
+        fetchGymPackages();
     }, []);
 
     const fetchUsers = () => {
         axios.get('http://localhost:5000/users')
             .then(res => setUsers(res.data))
             .catch(err => console.error("Error fetching users:", err));
+    };
+
+    const fetchGymPackages = () => {
+        axios.get('http://localhost:5000/gym-packages')
+            .then(res => setGymPackages(res.data))
+            .catch(err => console.error("Error fetching gym packages:", err));
     };
 
     const handleDeleteUser = (id) => {
@@ -64,6 +77,39 @@ function AdminDashboard() {
 
     const handleSidebarToggle = () => {
         setSidebarOpen(!sidebarOpen);
+    };
+
+    // Gym Package Handlers
+    const handleAddPackage = () => {
+        axios.post('http://localhost:5000/gym-packages', newPackage)
+            .then(() => {
+                fetchGymPackages();
+                setNewPackage({ name: '', details: '', duration: '', price: '' });
+            })
+            .catch(err => console.error(err));
+    };
+
+    const handleEditPackage = (pkg) => {
+        setEditingPackage(pkg);
+        setNewPackage(pkg);
+    };
+
+    const handleUpdatePackage = () => {
+        axios.put(`http://localhost:5000/gym-packages/${editingPackage.id}`, newPackage)
+            .then(() => {
+                fetchGymPackages();
+                setEditingPackage(null);
+                setNewPackage({ name: '', details: '', duration: '', price: '' });
+            })
+            .catch(err => console.error(err));
+    };
+
+    const handleDeletePackage = (id) => {
+        if (window.confirm('Are you sure you want to delete this package?')) {
+            axios.delete(`http://localhost:5000/gym-packages/${id}`)
+                .then(() => fetchGymPackages())
+                .catch(err => console.error(err));
+        }
     };
 
     return (
@@ -126,7 +172,42 @@ function AdminDashboard() {
                 {activeSection === 'gymPackages' && (
                     <div>
                         <h2>Manage Gym Packages</h2>
-                        <p>Here you can add, edit, or delete gym packages.</p>
+
+                        <input type="text" placeholder="Name" value={newPackage.name} onChange={(e) => setNewPackage({ ...newPackage, name: e.target.value })} />
+                        <input type="text" placeholder="Details" value={newPackage.details} onChange={(e) => setNewPackage({ ...newPackage, details: e.target.value })} />
+                        <input type="text" placeholder="Duration" value={newPackage.duration} onChange={(e) => setNewPackage({ ...newPackage, duration: e.target.value })} />
+                        <input type="text" placeholder="Price" value={newPackage.price} onChange={(e) => setNewPackage({ ...newPackage, price: e.target.value })} />
+                        {editingPackage ? (
+                            <button onClick={handleUpdatePackage}>Update Package</button>
+                        ) : (
+                            <button onClick={handleAddPackage}>Add Package</button>
+                        )}
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Details</th>
+                                    <th>Duration</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {gymPackages.map(pkg => (
+                                    <tr key={pkg.id}>
+                                        <td>{pkg.name}</td>
+                                        <td>{pkg.details}</td>
+                                        <td>{pkg.duration}</td>
+                                        <td>{pkg.price}</td>
+                                        <td>
+                                            <button onClick={() => handleEditPackage(pkg)}>Edit</button>
+                                            <button onClick={() => handleDeletePackage(pkg.id)}>Delete</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 )}
             </div>

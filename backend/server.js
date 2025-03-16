@@ -115,6 +115,54 @@ app.post('/register', (req, res) => {
 });
 
 
+// Fetch Gym Packages
+app.get('/gym-packages', (req, res) => {
+    const sql = 'SELECT * FROM gym_packages';
+    db.query(sql, (err, results) => {
+        if (err) return res.status(500).json(err);
+        res.json(results);
+    });
+});
+
+// Add a Gym Package
+app.post('/gym-packages', (req, res) => {
+    const { name, details, duration, price } = req.body;
+    const sql = 'INSERT INTO gym_packages (name, details, duration, price) VALUES (?, ?, ?, ?)';
+    db.query(sql, [name, details, duration, price], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: 'Package added successfully!' });
+    });
+});
+
+// Edit a Gym Package
+app.put('/gym-packages/:id', (req, res) => {
+    const { name, details, duration, price } = req.body;
+    const sql = 'UPDATE gym_packages SET name = ?, details = ?, duration = ?, price = ? WHERE id = ?';
+    db.query(sql, [name, details, duration, price, req.params.id], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: 'Package updated successfully!' });
+    });
+});
+
+// Delete a Gym Package
+app.delete('/gym-packages/:id', (req, res) => {
+    const sql = 'DELETE FROM gym_packages WHERE id = ?';
+    db.query(sql, [req.params.id], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: 'Package deleted successfully!' });
+    });
+});
+
+const fetchGymPackages = async () => {
+  try {
+    const response = await axios.get("http://localhost:5000/api/gym-packages");
+    setGymPackages(response.data);
+  } catch (error) {
+    console.error("Error fetching gym packages:", error);
+  }
+};
+
+
 const PORT = 5000;
 app.listen(PORT, '0.0.0.0',() => console.log('Server running on port 5000'));
 
