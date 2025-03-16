@@ -169,47 +169,78 @@ function AdminDashboard() {
                     )
                 )}
 
-                {activeSection === 'gymPackages' && (
-                    <div>
-                        <h2>Manage Gym Packages</h2>
+{activeSection === 'gymPackages' && (
+    <div className="gym-packages-section">
+        <h2>Manage Gym Packages</h2>
 
-                        <input type="text" placeholder="Name" value={newPackage.name} onChange={(e) => setNewPackage({ ...newPackage, name: e.target.value })} />
-                        <input type="text" placeholder="Details" value={newPackage.details} onChange={(e) => setNewPackage({ ...newPackage, details: e.target.value })} />
-                        <input type="text" placeholder="Duration" value={newPackage.duration} onChange={(e) => setNewPackage({ ...newPackage, duration: e.target.value })} />
-                        <input type="text" placeholder="Price" value={newPackage.price} onChange={(e) => setNewPackage({ ...newPackage, price: e.target.value })} />
-                        {editingPackage ? (
-                            <button onClick={handleUpdatePackage}>Update Package</button>
-                        ) : (
-                            <button onClick={handleAddPackage}>Add Package</button>
-                        )}
+        {/* Add Package Button */}
+        <button className="add-package-btn" onClick={() => setEditingPackage(editingPackage ? null : {})}>
+            {editingPackage ? "Cancel" : "Add Package"}
+        </button>
 
-                        <table className="user-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Details</th>
-                                    <th>Duration</th>
-                                    <th>Price</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {gymPackages.map(pkg => (
-                                    <tr key={pkg.id}>
-                                        <td data-label="Name">{pkg.name}</td>
-                                        <td data-label="Details">{pkg.details}</td>
-                                        <td data-label="Duration">{pkg.duration}</td>
-                                        <td data-label="Price">{pkg.price}</td>
-                                        <td>
-                                            <button onClick={() => handleEditPackage(pkg)}>Edit</button>
-                                            <button onClick={() => handleDeletePackage(pkg.id)}>Delete</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+        {/* Add/Edit Package Form (Hidden by Default) */}
+        {editingPackage && (
+            <div className="package-form">
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={newPackage.name}
+                    onChange={(e) => setNewPackage({ ...newPackage, name: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Details"
+                    value={newPackage.details}
+                    onChange={(e) => setNewPackage({ ...newPackage, details: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Duration"
+                    value={newPackage.duration}
+                    onChange={(e) => setNewPackage({ ...newPackage, duration: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Price"
+                    value={newPackage.price}
+                    onChange={(e) => setNewPackage({ ...newPackage, price: e.target.value })}
+                />
+                {editingPackage?.id ? (
+                    <button className="save-btn" onClick={handleUpdatePackage}>Update Package</button>
+                ) : (
+                    <button className="save-btn" onClick={handleAddPackage}>Add Package</button>
                 )}
+            </div>
+        )}
+
+        {/* Gym Packages Table */}
+        <table className="package-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {gymPackages.map(pkg => (
+                    <tr key={pkg.id}>
+                        <td data-label="Name">{pkg.name}</td>
+                        <td data-label="Details">{pkg.details}</td>
+                        <td data-label="Duration">{pkg.duration}</td>
+                        <td data-label="Price">{pkg.price}</td>
+                        <td>
+                            <button className="edit-btn" onClick={() => handleEditPackage(pkg)}>Edit</button>
+                            <button className="delete-btn" onClick={() => handleDeletePackage(pkg.id)}>Delete</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+)}
             </div>
         </div>
     );

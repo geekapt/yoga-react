@@ -42,7 +42,7 @@
         overflow-x: auto;
     }
 
-    /* Default Table Styles */
+    /* Default Table Styles for user table*/
     .user-table {
         width: 100%;
         border-collapse: collapse;
@@ -59,6 +59,35 @@
     .user-table th {
         background-color: #f4f4f4;
     }
+
+        /* Default Table Styles for package table*/
+    .package-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .package-table th,
+    .package-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .package-table th {
+        background-color: #f4f4f4;
+    }
+
+.add-package-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
 
     /* Profile Picture */
     .profile-pic {
@@ -77,6 +106,7 @@
         border-radius: 5px;
     }
 
+/*for user table*/
     button.edit {
         background-color: #ffc107;
         color: #fff;
@@ -86,6 +116,17 @@
         background-color: #dc3545;
         color: #fff;
     }
+/*    for package table*/
+    button.edit-btn {
+        background-color: #ffc107;
+        color: #fff;
+    }
+
+    button.delete-btn {
+        background-color: #ff2d00;
+        color: #fff;
+    }
+
 
     /* Admin Container */
     .admin-container {
@@ -174,6 +215,7 @@
         left: 215px; /* Moves with Sidebar */
     }
 
+
     /* RESPONSIVE DESIGN: Keep the table horizontal on mobile */
     /* RESPONSIVE DESIGN: Convert table to cards on small screens */
     @media (max-width: 768px) {
@@ -215,6 +257,49 @@
 
         /* ✅ THIS IS THE MAGIC!! */
         table.user-table td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        table.package-table,
+        table.package-table thead,
+        table.package-table tbody,
+        table.package-table th,
+        table.package-table td,
+        table.package-table tr {
+            display: inline-block;
+            width: 98%;
+        }
+
+        table.package-table thead {
+            display: none;
+        }
+
+        table.package-table tr {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 8px;
+            background-color: #fff;
+        }
+
+        table.package-table td {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        table.package-table td:last-child {
+            border-bottom: none;
+        }
+
+        /* ✅ THIS IS THE MAGIC!! */
+        table.package-table td:before {
             content: attr(data-label);
             font-weight: bold;
             text-transform: uppercase;
