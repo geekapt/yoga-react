@@ -183,7 +183,7 @@ function AdminDashboard() {
                             <button onClick={handleAddPackage}>Add Package</button>
                         )}
 
-                        <table>
+                        <table className="user-table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -196,10 +196,10 @@ function AdminDashboard() {
                             <tbody>
                                 {gymPackages.map(pkg => (
                                     <tr key={pkg.id}>
-                                        <td>{pkg.name}</td>
-                                        <td>{pkg.details}</td>
-                                        <td>{pkg.duration}</td>
-                                        <td>{pkg.price}</td>
+                                        <td data-label="Name">{pkg.name}</td>
+                                        <td data-label="Details">{pkg.details}</td>
+                                        <td data-label="Duration">{pkg.duration}</td>
+                                        <td data-label="Price">{pkg.price}</td>
                                         <td>
                                             <button onClick={() => handleEditPackage(pkg)}>Edit</button>
                                             <button onClick={() => handleDeletePackage(pkg.id)}>Delete</button>
