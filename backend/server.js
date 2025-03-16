@@ -163,6 +163,33 @@ const fetchGymPackages = async () => {
 };
 
 
+// Assign a gym package to a user (purchase a package)
+app.post('/users/:id/assign-package', (req, res) => {
+    const { packageId } = req.body;
+    const sql = 'UPDATE users SET active_package_id = ? WHERE id = ?';
+    
+    db.query(sql, [packageId, req.params.id], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json({ message: 'Package assigned to user successfully!' });
+    });
+});
+
+// Fetch User with Active Package
+app.get('/users/:id', (req, res) => {
+    const sql = `
+        SELECT users.*, gym_packages.name AS active_package
+        FROM users
+        LEFT JOIN gym_packages ON users.active_package_id = gym_packages.id
+        WHERE users.id = ?
+    `;
+    db.query(sql, [req.params.id], (err, result) => {
+        if (err) return res.status(500).json(err);
+        res.json(result[0]);
+    });
+});
+
+
+
 const PORT = 5000;
 app.listen(PORT, '0.0.0.0',() => console.log('Server running on port 5000'));
 
