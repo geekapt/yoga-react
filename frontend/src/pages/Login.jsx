@@ -12,7 +12,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/login', { email, password });
+            const response = await axios.post('http://192.168.1.44:5000/login', { email, password });
             localStorage.setItem('user', JSON.stringify(response.data));
             navigate('/profile');
         } catch (error) {
