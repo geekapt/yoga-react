@@ -22,7 +22,7 @@ const Register = () => {
         formData.append('profilePic', profilePic);
 
         try {
-            const response = await axios.post('http://192.168.1.44:5000/register', formData);
+            const response = await axios.post('http://192.168.68.200:5000/register', formData);
             alert(response.data.message);
             navigate('/login');
         } catch (error) {

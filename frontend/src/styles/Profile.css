@@ -146,8 +146,6 @@
     outline: none;
 }
 
-
-
 .card-info {
     display: flex;
     gap: 10px;
@@ -314,19 +312,21 @@
 .gym-packages {
     text-align: center;
     margin-top: 20px;
+    max-width: 100%;
 }
 
 .packages-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 10px;
 }
 
 .package-card {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
+    margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -381,6 +381,14 @@
     background: #45a049;
 }
 
+.details-pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: inherit;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+}
 
 @media (max-width: 768px) {
     .profile-content {
@@ -389,12 +397,15 @@
         padding: 15px;
         margin-top: 50px;
     }
+    .packages-grid {
+        display: grid;
+    }
 }
 
 /* Profile Picture */
 .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
     margin: 20px 0;

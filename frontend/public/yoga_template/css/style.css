@@ -888,14 +888,14 @@ a:focus {
 
 .price .price-status {
     margin-top: -30px;
-    text-align: right;
+    text-align: center;
 }
 
 .price .price-status span {
     position: relative;
     display: inline-block;
     height: 30px;
-    right: -30px;
+    right: -135px;
     padding: 7px 10px;
     text-align: center;
     color: #343148;

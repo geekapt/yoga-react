@@ -7,13 +7,13 @@ function AdminDashboard() {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [editUser, setEditUser] = useState(null);
-    const [activeSection, setActiveSection] = useState('users'); 
-    const [sidebarOpen, setSidebarOpen] = useState(false); 
+    const [activeSection, setActiveSection] = useState('users');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     // Gym Packages
     const [gymPackages, setGymPackages] = useState([]);
     const [newPackage, setNewPackage] = useState({ name: '', details: '', duration: '', price: '' });
-    const [editingPackage, setEditingPackage] = useState(null); // Keeps track of which package is being edited
+    const [editingPackage, setEditingPackage] = useState(null);
 
     useEffect(() => {
         fetchUsers();
@@ -21,20 +21,20 @@ function AdminDashboard() {
     }, []);
 
     const fetchUsers = () => {
-        axios.get('http://192.168.1.44:5000/users')
+        axios.get('http://192.168.68.200:5000/users')
             .then(res => setUsers(res.data))
             .catch(err => console.error("Error fetching users:", err));
     };
 
     const fetchGymPackages = () => {
-        axios.get('http://192.168.1.44:5000/gym-packages')
+        axios.get('http://192.168.68.200:5000/gym-packages')
             .then(res => setGymPackages(res.data))
             .catch(err => console.error("Error fetching gym packages:", err));
     };
 
     const handleDeleteUser = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
-            axios.delete(`http://192.168.1.44:5000/user/${id}`)
+            axios.delete(`http://192.168.68.200:5000/user/${id}`)
                 .then(() => fetchUsers())
                 .catch(err => console.error(err));
         }
@@ -59,7 +59,7 @@ function AdminDashboard() {
 
     // Gym Package Handlers
     const handleAddPackage = () => {
-        axios.post('http://192.168.1.44:5000/gym-packages', newPackage)
+        axios.post('http://192.168.68.200:5000/gym-packages', newPackage)
             .then(() => {
                 fetchGymPackages();
                 setNewPackage({ name: '', details: '', duration: '', price: '' });
@@ -68,14 +68,14 @@ function AdminDashboard() {
     };
 
     const handleEditPackage = (pkg) => {
-        setEditingPackage(pkg); 
-        setNewPackage({ ...pkg }); // ✅ Ensures the form gets filled with selected package details
+        setEditingPackage(pkg);
+        setNewPackage({ ...pkg });
     };
 
     const handleUpdatePackage = () => {
         if (!editingPackage) return;
 
-        axios.put(`http://192.168.1.44:5000/gym-packages/${editingPackage.id}`, newPackage)
+        axios.put(`http://192.168.68.200:5000/gym-packages/${editingPackage.id}`, newPackage)
             .then(() => {
                 fetchGymPackages();
                 setEditingPackage(null);
@@ -86,7 +86,7 @@ function AdminDashboard() {
 
     const handleDeletePackage = (id) => {
         if (window.confirm('Are you sure you want to delete this package?')) {
-            axios.delete(`http://192.168.1.44:5000/gym-packages/${id}`)
+            axios.delete(`http://192.168.68.200:5000/gym-packages/${id}`)
                 .then(() => fetchGymPackages())
                 .catch(err => console.error(err));
         }
@@ -131,12 +131,12 @@ function AdminDashboard() {
                                         .filter(user =>
                                             user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                             user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                                            user.phone.includes(searchTerm) 
+                                            user.phone.includes(searchTerm)
                                         )
                                         .map(user => (
                                             <tr key={user.id}>
                                                 <td data-label="Profile">
-                                                    <img src={`http://192.168.1.44:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                                                    <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
                                                 </td>
                                                 <td data-label="Name">{user.name}</td>
                                                 <td data-label="Email">{user.email}</td>
@@ -162,18 +162,18 @@ function AdminDashboard() {
                         </button>
 
                         {editingPackage && (
-                            <div className="package-form">  
+                            <div className="package-form">
                                 <input
                                     type="text"
                                     placeholder="Name"
                                     value={newPackage.name}
                                     onChange={(e) => setNewPackage({ ...newPackage, name: e.target.value })}
                                 />
-                                <input
-                                    type="text"
+                                <textarea
                                     placeholder="Details"
                                     value={newPackage.details}
                                     onChange={(e) => setNewPackage({ ...newPackage, details: e.target.value })}
+                                    rows="4"
                                 />
                                 <input
                                     type="text"
@@ -209,7 +209,7 @@ function AdminDashboard() {
                                 {gymPackages.map(pkg => (
                                     <tr key={pkg.id}>
                                         <td data-label="Name">{pkg.name}</td>
-                                        <td data-label="Details">{pkg.details}</td>
+                                        <td data-label="Details" style={{ whiteSpace: "pre-line" }}>{pkg.details}</td>
                                         <td data-label="Duration">{pkg.duration}</td>
                                         <td data-label="Price">{pkg.price}</td>
                                         <td>

@@ -20,7 +20,7 @@ const Profile = () => {
 
     // Fetch Gym Packages from backend
     useEffect(() => {
-        fetch('http://192.168.1.44:5000/gym-packages')
+        fetch('http://192.168.68.200:5000/gym-packages')
             .then(response => response.json())
             .then(data => setPackages(data))
             .catch(error => console.error('Error fetching packages:', error));
@@ -51,7 +51,7 @@ const Profile = () => {
     // Purchase Package Function
     const handlePurchase = async (packageId) => {
         try {
-            const response = await fetch(`http://192.168.1.44:5000/users/${user.id}/assign-package`, {
+            const response = await fetch(`http://192.168.68.200:5000/users/${user.id}/assign-package`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ packageId })
@@ -91,7 +91,7 @@ const Profile = () => {
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-profile">
                     {user.profile_photo && (
-                        <img src={`http://192.168.1.44:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                        <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
                     )}
                     <h3>Welcome, {user.name}</h3>
                     <p>{user.email}</p>
@@ -117,7 +117,8 @@ const Profile = () => {
                                 <h3>Active Package</h3>
                                 <p><strong>Name:</strong> {activePackage.name}</p>
                                 <p><strong>Duration:</strong> {activePackage.duration}</p>
-                                <p><strong>Details:</strong> {activePackage.details}</p>
+                                <p><strong>Details:</strong></p>
+                                <pre className="details-pre">{activePackage.details}</pre>
                                 <p><strong>Price:</strong> ${activePackage.price}</p>
                             </div>
                         ) : (
@@ -130,7 +131,8 @@ const Profile = () => {
                         <div className="selected-package-card">
                             <h3>{selectedPackage.name}</h3>
                             <p><strong>Duration:</strong> {selectedPackage.duration}</p>
-                            <p><strong>Details:</strong> {selectedPackage.details}</p>
+                            <p><strong>Details:</strong></p>
+                            <pre className="details-pre">{selectedPackage.details}</pre>
                             <p className="price">Price: ${selectedPackage.price}</p>
                         </div>
 
@@ -174,7 +176,8 @@ const Profile = () => {
                                 {packages.slice(0, 4).map(pkg => (
                                     <div key={pkg.id} className="package-card">
                                         <h3>{pkg.name}</h3>
-                                        <p><strong>Details:</strong> {pkg.details}</p>
+                                        <p><strong>Details:</strong></p>
+                                        <pre className="details-pre">{pkg.details}</pre>
                                         <p><strong>Duration:</strong> {pkg.duration}</p>
                                         <p className="price">Price: ${pkg.price}</p>
                                         <button className="add-to-cart" onClick={() => handlePurchaseClick(pkg)}>
