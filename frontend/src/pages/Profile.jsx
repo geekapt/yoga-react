@@ -20,7 +20,7 @@ const Profile = () => {
 
     // Fetch Gym Packages from backend
     useEffect(() => {
-        fetch('http://192.168.68.200:5000/gym-packages')
+        fetch('http://192.168.1.44:5000/gym-packages')
             .then(response => response.json())
             .then(data => setPackages(data))
             .catch(error => console.error('Error fetching packages:', error));
@@ -51,7 +51,7 @@ const Profile = () => {
     // Purchase Package Function
     const handlePurchase = async (packageId) => {
         try {
-            const response = await fetch(`http://192.168.68.200:5000/users/${user.id}/assign-package`, {
+            const response = await fetch(`http://192.168.1.44:5000/users/${user.id}/assign-package`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ packageId })
@@ -91,7 +91,7 @@ const Profile = () => {
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-profile">
                     {user.profile_photo && (
-                        <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                        <img src={`http://192.168.1.44:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
                     )}
                     <h3>Welcome, {user.name}</h3>
                     <p>{user.email}</p>

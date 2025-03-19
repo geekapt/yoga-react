@@ -21,20 +21,20 @@ function AdminDashboard() {
     }, []);
 
     const fetchUsers = () => {
-        axios.get('http://192.168.68.200:5000/users')
+        axios.get('http://192.168.1.44:5000/users')
             .then(res => setUsers(res.data))
             .catch(err => console.error("Error fetching users:", err));
     };
 
     const fetchGymPackages = () => {
-        axios.get('http://192.168.68.200:5000/gym-packages')
+        axios.get('http://192.168.1.44:5000/gym-packages')
             .then(res => setGymPackages(res.data))
             .catch(err => console.error("Error fetching gym packages:", err));
     };
 
     const handleDeleteUser = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
-            axios.delete(`http://192.168.68.200:5000/user/${id}`)
+            axios.delete(`http://192.168.1.44:5000/user/${id}`)
                 .then(() => fetchUsers())
                 .catch(err => console.error(err));
         }
@@ -59,7 +59,7 @@ function AdminDashboard() {
 
     // Gym Package Handlers
     const handleAddPackage = () => {
-        axios.post('http://192.168.68.200:5000/gym-packages', newPackage)
+        axios.post('http://192.168.1.44:5000/gym-packages', newPackage)
             .then(() => {
                 fetchGymPackages();
                 setNewPackage({ name: '', details: '', duration: '', price: '' });
@@ -75,7 +75,7 @@ function AdminDashboard() {
     const handleUpdatePackage = () => {
         if (!editingPackage) return;
 
-        axios.put(`http://192.168.68.200:5000/gym-packages/${editingPackage.id}`, newPackage)
+        axios.put(`http://192.168.1.44:5000/gym-packages/${editingPackage.id}`, newPackage)
             .then(() => {
                 fetchGymPackages();
                 setEditingPackage(null);
@@ -86,7 +86,7 @@ function AdminDashboard() {
 
     const handleDeletePackage = (id) => {
         if (window.confirm('Are you sure you want to delete this package?')) {
-            axios.delete(`http://192.168.68.200:5000/gym-packages/${id}`)
+            axios.delete(`http://192.168.1.44:5000/gym-packages/${id}`)
                 .then(() => fetchGymPackages())
                 .catch(err => console.error(err));
         }
@@ -136,7 +136,7 @@ function AdminDashboard() {
                                         .map(user => (
                                             <tr key={user.id}>
                                                 <td data-label="Profile">
-                                                    <img src={`http://192.168.68.200:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
+                                                    <img src={`http://192.168.1.44:5000${user.profile_photo}`} alt="Profile" className="profile-pic" />
                                                 </td>
                                                 <td data-label="Name">{user.name}</td>
                                                 <td data-label="Email">{user.email}</td>

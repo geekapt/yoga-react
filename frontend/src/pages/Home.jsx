@@ -14,7 +14,7 @@ function Home() {
 
     // Fetch Gym Packages from Backend
     useEffect(() => {
-        fetch("http://192.168.68.200:5000/gym-packages")
+        fetch("http://192.168.1.44:5000/gym-packages")
             .then((response) => response.json())
             .then((data) => setPackages(data))
             .catch((error) => console.error("Error fetching packages:", error));
