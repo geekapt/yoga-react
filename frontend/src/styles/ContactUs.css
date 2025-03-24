@@ -1,0 +1,111 @@
+/* Base styles for the contact us page */
+.contact-us {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.contact-us p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.contact-us form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-us form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-us label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.contact-us input,
+.contact-us textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.contact-us textarea {
+    height: 150px;
+}
+
+.contact-us button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-us button:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .contact-us {
+        padding: 15px;
+    }
+
+    .contact-us h1 {
+        font-size: 1.8rem;
+    }
+
+    .contact-us p {
+        font-size: 1rem;
+    }
+
+    .contact-us button {
+        font-size: 1.1rem;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+    .contact-us {
+        padding: 40px;
+    }
+
+    .contact-us h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-us p {
+        font-size: 1.2rem;
+    }
+
+    .contact-us input,
+    .contact-us textarea {
+        font-size: 1.1rem;
+    }
+
+    .contact-us button {
+        font-size: 1.2rem;
+    }
+}

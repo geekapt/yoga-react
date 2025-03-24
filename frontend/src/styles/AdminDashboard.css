@@ -47,6 +47,7 @@ h2 {
 /* Table Wrapper */
 .responsive-table {
     overflow-x: auto;
+    
 }
 
 /* Table Borders and Header Colors */
@@ -62,6 +63,7 @@ h2 {
     padding: 10px;
     border: 1px solid black; /* Black border */
     text-align: center;
+
 }
 
 .user-table th, .package-table th {

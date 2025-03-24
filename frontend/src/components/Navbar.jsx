@@ -58,6 +58,7 @@ const Navbar = () => {
             {/* Display links for desktop, aligned to the right */}
             <div className={`desktop-links ${isMobile ? 'hidden' : ''}`}>
                 <Link to="/">Home</Link>
+                <Link to="/contact-us">Contact Us</Link> {/* Added Contact Us link here */}
                 {admin && <Link to="/admin/dashboard">Dashboard</Link>}
                 {user && !admin && (
                     <>
@@ -90,6 +91,7 @@ const Navbar = () => {
                 {isMobile && (
                     <>
                         <Link to="/" onClick={closeMenu}>Home</Link>
+                        <Link to="/contact-us" onClick={closeMenu}>Contact Us</Link> {/* Added Contact Us link here */}
                         {admin && <Link to="/admin/dashboard" onClick={closeMenu}>Dashboard</Link>}
                         {user && !admin && (
                             <>
