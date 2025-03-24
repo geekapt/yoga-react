@@ -1,83 +1,75 @@
-    .admin-dashboard {
-        padding: 84px;
-        font-family: Arial, sans-serif;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
+/* Full Body Pink Background */
+body {
+    background-color: #ffc9c9;
+}
 
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+/* Admin Dashboard */
+.admin-dashboard {
+    padding: 84px;
+    font-family: Arial, sans-serif;
+    max-width: 100%;
+    box-sizing: border-box;
+}
 
-    .edit-form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        border: 1px solid #ddd;
-        padding: 15px;
-        background-color: #f9f9f9;
-        max-width: 600px;
-        margin: 0 auto 20px;
-    }
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    .edit-form input {
-        padding: 8px;
-        width: 100%;
-        box-sizing: border-box;
-    }
+/* Edit Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
 
-    .edit-form button {
-        padding: 8px 15px;
-        cursor: pointer;
-    }
+.edit-form input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    .cancel {
-        background-color: #6c757d;
-        color: white;
-    }
+.edit-form button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
 
-    /* Table Wrapper */
-    .responsive-table {
-        overflow-x: auto;
-    }
+.cancel {
+    background-color: #6c757d;
+    color: white;
+}
 
-    /* Default Table Styles for user table*/
-    .user-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
+/* Table Wrapper */
+.responsive-table {
+    overflow-x: auto;
+}
 
-    .user-table th,
-    .user-table td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
+/* Table Borders and Header Colors */
+.user-table, .package-table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black; /* Black border */
+    table-layout: fixed;
+}
 
-    .user-table th {
-        background-color: #f4f4f4;
-    }
+.user-table th, .user-table td,
+.package-table th, .package-table td {
+    padding: 10px;
+    border: 1px solid black; /* Black border */
+    text-align: center;
+}
 
-        /* Default Table Styles for package table*/
-    .package-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
+.user-table th, .package-table th {
+    background-color: #333; /* Dark header */
+    color: white; /* White text */
+}
 
-    .package-table th,
-    .package-table td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .package-table th {
-        background-color: #f4f4f4;
-    }
-
+/* Add Package Button */
 .add-package-btn {
     background-color: #007bff;
     color: white;
@@ -88,6 +80,7 @@
     border-radius: 5px;
 }
 
+/* Package Form */
 .package-form {
     display: flex;
     flex-direction: column;
@@ -114,7 +107,7 @@
 
 .package-form textarea {
     resize: none;
-    height: 100px; /* Adjust height */
+    height: 100px;
     font-family: inherit;
 }
 
@@ -124,6 +117,7 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
 
+/* Save Button */
 .save-btn {
     background-color: #007bff;
     color: white;
@@ -139,254 +133,239 @@
     background-color: #0056b3;
 }
 
+/* Profile Picture */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
+/* Buttons */
+button {
+    padding: 5px 10px;
+    margin: 11px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
 
-    /* Profile Picture */
+/* Buttons for Tables */
+button.edit {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+button.delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+button.edit-btn {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+button.delete-btn {
+    background-color: #ff2d00;
+    color: #fff;
+}
+
+/* Admin Container */
+.admin-container {
+    display: flex;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 60px;
+}
+
+.admin-sidebar.open {
+    transform: translateX(0);
+}
+
+.admin-sidebar button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.admin-sidebar button:hover {
+    background-color: #444;
+}
+
+/* Main Dashboard */
+.admin-dashboard {
+    display: flex;
+    padding: 84px;
+    font-family: Arial, sans-serif;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Package Management */
+.package-management {
+    text-align: center;
+    padding: 20px;
+}
+
+.admin-content {
+    flex-grow: 1;
+    margin-left: 200px;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: -30px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+}
+
+.sidebar-toggle-btn.move {
+    left: 215px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    table.user-table,
+    table.user-table thead,
+    table.user-table tbody,
+    table.user-table th,
+    table.user-table td,
+    table.user-table tr {
+        display: inline-block;
+        width: 98%;
+    }
+
+    table.user-table thead {
+        display: none;
+    }
+
+    table.user-table tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: #fff;
+    }
+
+    table.user-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+    }
+
+    table.user-table td:last-child {
+        border-bottom: none;
+    }
+
+    table.user-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #555;
+    }
+
+    table.package-table,
+    table.package-table thead,
+    table.package-table tbody,
+    table.package-table th,
+    table.package-table td,
+    table.package-table tr {
+        display: inline-block;
+        width: 98%;
+    }
+
+    table.package-table thead {
+        display: none;
+    }
+
+    table.package-table tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 8px;
+        background-color: #fff;
+    }
+
+    table.package-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #eee;
+        vertical-align: middle;
+    }
+
+    table.package-table td:last-child {
+        border-bottom: none;
+    }
+
+    table.package-table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #555;
+    }
+
     .profile-pic {
-        width: 40px;
-        height: 40px;
-        object-fit: cover;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
     }
 
-    /* Buttons */
-    button {
-        padding: 5px 10px;
-        margin: 11px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-    }
-
-/*for user table*/
-    button.edit {
-        background-color: #ffc107;
-        color: #fff;
-    }
-
-    button.delete {
-        background-color: #dc3545;
-        color: #fff;
-    }
-/*    for package table*/
-    button.edit-btn {
-        background-color: #ffc107;
-        color: #fff;
-    }
-
-    button.delete-btn {
-        background-color: #ff2d00;
-        color: #fff;
-    }
-
-
-    /* Admin Container */
-    .admin-container {
-        display: flex;
-    }
-
-    /* Sidebar */
-    .admin-sidebar {
-        width: 200px;
-        background-color: #333;
-        color: white;
-        padding: 20px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
-        /* transform: translateX(-100%); */
-        transition: transform 0.3s ease-in-out;
+    .admin-dashboard {
         margin-top: 60px;
+        padding: 10px;
+    }
+
+    .sidebar-toggle-btn {
+        display: block;
+    }
+
+    .admin-sidebar {
+        transform: translateX(-100%);
+        position: fixed;
     }
 
     .admin-sidebar.open {
         transform: translateX(0);
     }
 
-    .admin-sidebar button {
-        display: block;
-        width: 100%;
-        background: none;
-        border: none;
-        padding: 10px;
-        color: white;
-        text-align: left;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .admin-sidebar button:hover {
-        background-color: #444;
-    }
-
-    /* Main Dashboard */
-    .admin-dashboard {
-        display: flex;
-        padding: 84px;
-        font-family: Arial, sans-serif;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Package Management Section */
-    .package-management {
-        text-align: center;
-        padding: 20px;
-    }
-
     .admin-content {
-        flex-grow: 1;
-        margin-left: 200px;
+        margin-left: 0;
     }
-
-    /* Sidebar Toggle Button */
-    .sidebar-toggle-btn {
-        display: none;
-        /* Hidden on larger screens */
-        position: fixed;
-        top: 65px;
-        left: -30px;
-        background: #333;
-        color: white;
-        border: none;
-        padding: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 5px;
-        z-index: 1000;
-        transition: left 0.3s ease-in-out;
-        /* Ensure it's always above other elements */
-    }
-
-    .sidebar-toggle-btn.move {
-        left: 215px; /* Moves with Sidebar */
-    }
-
-
-    /* RESPONSIVE DESIGN: Keep the table horizontal on mobile */
-    /* RESPONSIVE DESIGN: Convert table to cards on small screens */
-    @media (max-width: 768px) {
-
-        table.user-table,
-        table.user-table thead,
-        table.user-table tbody,
-        table.user-table th,
-        table.user-table td,
-        table.user-table tr {
-            display: inline-block;
-            width: 98%;
-        }
-
-        table.user-table thead {
-            display: none;
-        }
-
-        table.user-table tr {
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            padding: 8px;
-            background-color: #fff;
-        }
-
-        table.user-table td {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            text-align: left;
-            border: none;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
-        }
-
-        table.user-table td:last-child {
-            border-bottom: none;
-        }
-
-        /* ✅ THIS IS THE MAGIC!! */
-        table.user-table td:before {
-            content: attr(data-label);
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #555;
-        }
-
-        table.package-table,
-        table.package-table thead,
-        table.package-table tbody,
-        table.package-table th,
-        table.package-table td,
-        table.package-table tr {
-            display: inline-block;
-            width: 98%;
-        }
-
-        table.package-table thead {
-            display: none;
-        }
-
-        table.package-table tr {
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            padding: 8px;
-            background-color: #fff;
-        }
-
-        table.package-table td {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            text-align: left;
-            border: none;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
-        }
-
-        table.package-table td:last-child {
-            border-bottom: none;
-        }
-
-        /* ✅ THIS IS THE MAGIC!! */
-        table.package-table td:before {
-            content: attr(data-label);
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #555;
-        }
-
-        /* ✅ Profile picture fix */
-        .profile-pic {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        }
-
-        /* ✅ Fix Admin Dashboard padding */
-        .admin-dashboard {
-            margin-top: 60px;
-            padding: 10px;
-        }
-
-        .sidebar-toggle-btn {
-            display: block;
-            /* Only show button on small screens */
-        }
-
-        .admin-sidebar {
-            transform: translateX(-100%);
-            position: fixed;
-        }
-
-        .admin-sidebar.open {
-            transform: translateX(0);
-        }
-
-        .admin-content {
-            margin-left: 0;
-        }
-
-    }
+}

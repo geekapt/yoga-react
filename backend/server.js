@@ -12,7 +12,7 @@ app.use('/uploads', express.static('uploads')); // for profile images
 
 // Database connection
 const db = mysql.createConnection({
-    host: '192.168.1.44',
+    host: 'localhost',
     user: 'yoga',
     password: 'root',
     database: 'yoga'
@@ -155,7 +155,7 @@ app.delete('/gym-packages/:id', (req, res) => {
 
 const fetchGymPackages = async () => {
   try {
-    const response = await axios.get("http://192.168.1.44:5000/api/gym-packages");
+    const response = await axios.get("http://localhost:5000/api/gym-packages");
     setGymPackages(response.data);
   } catch (error) {
     console.error("Error fetching gym packages:", error);

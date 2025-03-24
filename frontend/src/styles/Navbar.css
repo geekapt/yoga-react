@@ -9,8 +9,15 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background-color: rgba(46, 52, 64);
-    transition: background-color 0.3s ease;
+    background-color: rgba(221, 187, 187, 0.8); /* Added transparency */
+    transition: background-color 0.1s ease;
+    backdrop-filter: blur(10px); /* Adds a subtle blur effect */
+}
+
+.navbar a,
+.navbar button,
+.navbar span {
+    color: white !important;
 }
 
 /* Specific styles for logout buttons inside navbar */

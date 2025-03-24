@@ -13,7 +13,7 @@ const AdminLogin = () => {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.post('http://192.168.1.44:5000/admin/login', { email, password });
+            const res = await axios.post('http://localhost:5000/admin/login', { email, password });
             localStorage.setItem('admin', JSON.stringify(res.data.admin));
             navigate('/admin/dashboard');  // Redirect to dashboard after login
         } catch (err) {

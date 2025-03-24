@@ -14,7 +14,7 @@ function EditForm({ user, onCancel, onUpdate }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://192.168.1.44:5000/user/${user.id}`, formData)
+        axios.put(`http://localhost:5000/user/${user.id}`, formData)
             .then(() => {
                 onUpdate();
             })

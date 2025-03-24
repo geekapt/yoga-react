@@ -1,20 +1,33 @@
+/* Set full body background to pink */
+body {
+    background-color: #ffc9c9;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Form container styling */
 .form-container {
     max-width: 400px;
     margin: 80px auto;
-    background: #ffffff;
+    background: #ffffff; /* Keep form background white for contrast */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Input and button styles */
 input, button {
     width: 90%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background: #ffffff; /* Keep input fields white */
+    color: #000; /* Ensure text is readable */
 }
 
+/* Button styles */
 button {
     background-color: #28a745;
     color: #fff;
